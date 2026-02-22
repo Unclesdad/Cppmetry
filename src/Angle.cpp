@@ -9,15 +9,15 @@ Angle::Angle() : rads(0), x(1), y(0) {}
 
 Angle::Angle(double rads) : rads(std::fmod(rads, Angle::PI * 2)), x(cos(rads)), y(sin(rads)) {}
 
-double Angle::sine() {
+double Angle::sine() const {
     return y;
 }
 
-double Angle::cosine() {
+double Angle::cosine() const {
     return x;
 }
 
-double Angle::tangent() {
+double Angle::tangent() const {
     return x == 0 ? std::numeric_limits<double>::max() : y/x;
 }
 

@@ -24,5 +24,5 @@ public:
     Vector(double magnitude, const Angle& angle);
 
     /// @return The magnitude (or length) of the vector.
-    double magnitude();
+    double magnitude() const;
 };

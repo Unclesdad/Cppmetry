@@ -24,13 +24,13 @@ public:
     Angle(double rads);
 
     /// @return The sine of the angle.
-    double sine();
+    double sine() const;
 
     /// @return The cosine of the angle.
-    double cosine();
+    double cosine() const;
 
     /// @return The tangent of the angle. If undefined, returns the maximum double value.
-    double tangent();
+    double tangent() const;
 
     /// @brief Adds another angle on top of this one.
     /// @param rhs The angle to add.
