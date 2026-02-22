@@ -3,6 +3,8 @@
 #include <numbers>
 #include <limits>
 
+const double Angle::PI = 3.14159265358979323846;
+
 Angle::Angle() : rads(0), x(1), y(0) {}
 
 Angle::Angle(double rads) : rads(std::fmod(rads, Angle::PI * 2)), x(cos(rads)), y(sin(rads)) {}
