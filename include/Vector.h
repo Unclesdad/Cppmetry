@@ -55,8 +55,8 @@ public:
     /// @return The dot product of two vectors.
     double dot(const Vector& other) const;
 
-    /// @brief Calculates the magnitude of the cross product of this vector with another.
+    /// @brief Calculates the z-value of the cross product of this vector with another.
     /// @param rhs the vector to cross with.
-    /// @return The magnitude of the cross product of two vectors.
+    /// @return The signed value of the cross product of two vectors.
     double cross(const Vector& other) const;
 };

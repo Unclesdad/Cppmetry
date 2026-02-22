@@ -37,5 +37,5 @@ double Vector::dot(const Vector& other) const {
 }
 
 double Vector::cross(const Vector& other) const {
-    return std::abs(x * other.y - y * other.x);
+    return x * other.y - y * other.x;
 }
