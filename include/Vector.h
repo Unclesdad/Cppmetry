@@ -53,10 +53,10 @@ public:
     /// @brief Calculates the dot product of this vector with another.
     /// @param rhs The vector to dot with.
     /// @return The dot product of two vectors.
-    double dot(const Vector& rhs) const;
+    double dot(const Vector& other) const;
 
     /// @brief Calculates the magnitude of the cross product of this vector with another.
     /// @param rhs the vector to cross with.
     /// @return The magnitude of the cross product of two vectors.
-    double cross(const Vector& rhs) const;
+    double cross(const Vector& other) const;
 };
