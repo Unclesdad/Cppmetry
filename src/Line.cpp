@@ -11,8 +11,8 @@ Line::Line(const Point& p1, const Vector& v): p1(p1), p2(p1 + v) {}
 bool Line::intersects(const Line& other) const {
     const double EPS = 1e-9; // tolerance
 
-    Vector v(p2 - p1); // l1 = vt + p1
-    Vector u(other.p2 - other.p1); // l2 = us + other.p1
+    Vector v(toVector()); // l1 = vt + p1
+    Vector u(other.toVector()); // l2 = us + other.p1
 
     if (v.magnitude() < EPS || u.magnitude() < EPS) return false; // Return false if endpoints are equal
 
@@ -34,7 +34,7 @@ bool Line::intersects(const Line& other) const {
     double t0(v.dot(w) / vv); // where start of other line lands on this one (as a parameter)
     double t1(t0 + v.dot(u) / vv); // where end of other line lands on this one (as a parameter)
 
-    return std::max(t0, t1) >= -EPS && std::min(t0, t1) <= 1 + EPS;
+    return std::max(t0, t1) >= -EPS && std::min(t0, t1) <= 1 + EPS; // return whether the lines overlap
 }
 
 Vector Line::toVector() const {
