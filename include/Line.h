@@ -7,9 +7,9 @@
 class Line {
 public:
     /// @brief Starting point of the line segment.
-    const Point& p1;
+    const Point p1;
     /// @brief Ending point of the line segment.
-    const Point& p2;
+    const Point p2;
 
     /// @brief Constructs a line with both endpoints at (0,0).
     Line();
@@ -27,8 +27,8 @@ public:
     /// @brief Finds whether or not this line segment intersects another line segment.
     /// @param other The other line segment to compare to.
     /// @return True if the two line segments intersect, false if they don't.
-    bool intersects(const Line& other);
+    bool intersects(const Line& other) const;
 
     /// @return A vector representing the displacement between the two endpoints.
-    Vector toVector();
+    Vector toVector() const;
 };
