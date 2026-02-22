@@ -50,6 +50,9 @@ public:
     /// @return The scalar multiplication of a vector.
     friend Vector operator*(double lhs, const Vector& rhs);
 
+    /// @return True if the two vectors are equal, false if they are not.
+    bool operator==(const Vector& rhs) const;
+
     /// @brief Calculates the dot product of this vector with another.
     /// @param rhs The vector to dot with.
     /// @return The dot product of two vectors.

@@ -32,6 +32,10 @@ Vector operator*(double lhs, const Vector& rhs) {
     return rhs * lhs;
 }
 
+bool Vector::operator==(const Vector& rhs) const {
+    return x == rhs.x && y == rhs.y;
+}
+
 double Vector::dot(const Vector& other) const {
     return x * other.x + y * other.y;
 }
