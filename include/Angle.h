@@ -3,12 +3,6 @@
 #include "Vector.h"
 
 class Angle {
-private:
-    /// @brief cos, calculated in advance
-    const double x;
-    /// @brief sin, calculated in advance
-    const double y;
-
 public:
     /// @brief The beloved circumference / diameter
     const static double PI;
@@ -16,6 +10,13 @@ public:
     /// @brief The radian value of the angle. Always limited to [0, 2PI).
     const double rads; 
 
+private:
+    /// @brief cos, calculated in advance
+    const double x;
+    /// @brief sin, calculated in advance
+    const double y;
+
+public:
     /// @brief Constructs an angle of zero radians (x=1, y=0).
     Angle();
 

@@ -26,4 +26,9 @@ public:
     /// @param rhs The starting point.
     /// @return The displacement between two points.
     Vector operator-(const Point& rhs) const;
+
+    /// @brief Translates a point by a vector.
+    /// @param rhs The vector to translate by.
+    /// @return The new, translated point.
+    Point operator+(const Vector& rhs) const;
 };

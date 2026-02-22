@@ -1,6 +1,6 @@
 #pragma once
 
-#include <initializer_list>
+class Angle;
 
 /// @brief Vector in two-space
 class Vector {
