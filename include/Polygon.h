@@ -19,6 +19,8 @@ public:
     bool intersectsPerimeter(const Line& line) const override;
 
     /// @brief Checks whether or not this Polygon is convex.
+    /// This means that the concavity of the sides should not change signs. 
+    /// If the any of the sides intersect with another side, then it is not convex.
     /// @return True if convex, false if none.
     bool isConvex() const;
 };

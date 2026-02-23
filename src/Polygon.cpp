@@ -33,9 +33,11 @@ bool Polygon::isConvex() const {
         double concavity = lines[i].toVector().cross(lines[(i+1) % lines.size()].toVector());
         if (signChange(concavity, last)) return false;
         last = concavity;
+
+        for (size_t j = i + 1; j < lines.size(); j++) {
+            // assure no lines intersect
+            if (lines[i].intersects(lines[j], true)) return false;
+        }
     }
-
-    // find out if lines intersect. they cant intersect
-
     return true;
 }
