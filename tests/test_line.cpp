@@ -26,6 +26,10 @@ TEST(LineTests, Intersection) {
     ASSERT_FALSE(Line(g,h).intersects(Line(o,c)));
     ASSERT_FALSE(Line(o,a).intersects(Line(b,c)));
     ASSERT_FALSE(Line(d2,e2).intersects(Line(o,a)));
+
+    ASSERT_TRUE(Line(o,g).intersects(Line(g,a), false));
+    ASSERT_FALSE(Line(o,g).intersects(Line(g,a), true));
+    ASSERT_FALSE(Line(o,a).intersects(Line(a,b), true));
 }
 
 TEST(LineTests, ToVector) {

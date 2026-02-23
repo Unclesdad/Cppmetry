@@ -27,7 +27,7 @@ public:
     /// @brief Finds whether or not this line segment intersects another line segment.
     /// @param other The other line segment to compare to.
     /// @return True if the two line segments intersect, false if they don't.
-    bool intersects(const Line& other) const;
+    bool intersects(const Line& other, bool exclusive = false) const;
 
     /// @return A vector representing the displacement between the two endpoints.
     Vector toVector() const;
