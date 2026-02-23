@@ -34,5 +34,8 @@ bool Polygon::isConvex() const {
         if (signChange(concavity, last)) return false;
         last = concavity;
     }
+
+    // find out if lines intersect. they cant intersect
+
     return true;
 }
