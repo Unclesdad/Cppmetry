@@ -43,3 +43,13 @@ double Vector::dot(const Vector& other) const {
 double Vector::cross(const Vector& other) const {
     return x * other.y - y * other.x;
 }
+
+Vector Vector::projectOnto(const Vector& other) const {
+    // return zero vector of vector we are projecting onto is zero vector
+    return other.magnitude() == 0 ? Vector() : (dot(other)) / (other.dot(other)) * other;
+}
+
+Vector Vector::unit() const {
+    // make sure not to divide by 0
+    return magnitude() == 0 ? Vector() : this->operator*(1/magnitude());
+}

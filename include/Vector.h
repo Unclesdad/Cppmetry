@@ -62,4 +62,12 @@ public:
     /// @param rhs the vector to cross with.
     /// @return The signed value of the cross product of two vectors.
     double cross(const Vector& other) const;
+
+    /// @brief Projects this vector onto another.
+    /// @param other The other vector.
+    /// @return The orthogonal projection of this vector onto another.
+    Vector projectOnto(const Vector& other) const;
+
+    /// @return The unit of this vector. This vector but with a magnitude of 1.
+    Vector unit() const;
 };

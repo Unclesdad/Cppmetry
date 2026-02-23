@@ -92,3 +92,29 @@ TEST(VectorTests, CrossProduct) {
 
     ASSERT_NEAR(u.cross(w), u.magnitude() * w.magnitude() * (w.angle() - u.angle()).sine(), EPS);
 }
+
+TEST(VectorTests, Projection) {
+    Vector v{1,0};
+    Vector u{1,1};
+    Vector w{2,2};
+
+    ASSERT_EQ(u.projectOnto(v), v);
+    ASSERT_EQ(w.projectOnto(v), 2 * v);
+    ASSERT_EQ(v.projectOnto(u), v.projectOnto(w));
+}
+
+TEST(VectorTests, UnitVectors) {
+    double EPS = 1e-12;
+
+    Vector v{1,0};
+    Vector u{1,1};
+    Vector w{-1,-1};
+    Vector r{1,2};
+
+    double sqrtTwoOverTwo = std::sqrt(2) / 2;
+
+    ASSERT_EQ(v.unit(), v);
+    ASSERT_NEAR((u.unit() - Vector(sqrtTwoOverTwo, sqrtTwoOverTwo)).magnitude(), 0, EPS);
+    ASSERT_NEAR((w.unit() - Vector(-sqrtTwoOverTwo,-sqrtTwoOverTwo)).magnitude(), 0, EPS);
+    ASSERT_EQ(r.unit(), (r * 4).unit());
+}
