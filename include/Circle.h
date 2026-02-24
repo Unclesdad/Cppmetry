@@ -15,4 +15,6 @@ public:
     Circle(const Point& center, double radius);
 
     bool intersectsPerimeter(const Line& line) const override;
+
+    double area() const override;
 };

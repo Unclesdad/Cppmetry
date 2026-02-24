@@ -1,4 +1,5 @@
 #include "Circle.h"
+#include "Angle.h"
 
 Circle::Circle(const Point& center, double radius) : center(center), radius(radius) {}
 
@@ -9,4 +10,9 @@ bool Circle::intersectsPerimeter(const Line& line) const {
     // check if line is a secant and intersects circle edge. nearest dist to line should be less than or eq to radius
     Vector endpointDisplacement = line.p2 - center;
     return (endpointDisplacement - endpointDisplacement.projectOnto(line.toVector())).magnitude() <= radius;
+}
+
+double Circle::area() const {
+    // A = pi r^2
+    return Angle::PI * radius * radius;
 }

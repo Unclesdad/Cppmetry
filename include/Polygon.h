@@ -23,4 +23,6 @@ public:
     /// If the any of the sides intersect with another side, then it is not convex.
     /// @return True if convex, false if none.
     bool isConvex() const;
+
+    double area() const override;
 };

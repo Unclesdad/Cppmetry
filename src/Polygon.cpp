@@ -41,3 +41,12 @@ bool Polygon::isConvex() const {
     }
     return true;
 }
+
+double Polygon::area() const {
+    double cumulative = 0;
+    for (size_t i = 1; i < vertices.size() - 1; i++) {
+        // shoelace theorem. crossing becomes area of parallelogram (double that of the triangle)
+        cumulative += (vertices[i] - vertices[0]).cross(vertices[i+1] - vertices[0]);
+    }
+    return std::abs(cumulative / 2);
+}

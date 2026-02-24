@@ -10,4 +10,7 @@ public:
     /// @param line The line to check.
     /// @return True if there is an intersection, False if none.
     virtual bool intersectsPerimeter(const Line& line) const = 0;
+
+    /// @return The area of the Shape.
+    virtual double area() const = 0;
 };
