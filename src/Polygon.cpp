@@ -1,6 +1,7 @@
 #include "Polygon.h"
 #include <functional>
 #include <cmath>
+#include "Angle.h"
 
 std::vector<Line> linesFromPoints(std::vector<Point> pts) {
     std::vector<Line> lineList;
@@ -11,6 +12,8 @@ std::vector<Line> linesFromPoints(std::vector<Point> pts) {
 }
 
 Polygon::Polygon(std::initializer_list<Point> pts) : vertices(pts), lines(linesFromPoints(vertices)) {}
+
+Polygon::Polygon(std::vector<Point> pts) : vertices(pts), lines(linesFromPoints(pts)) {}
 
 bool Polygon::intersectsPerimeter(const Line& line) const {
     for (Line side : lines) {
@@ -49,4 +52,11 @@ double Polygon::area() const {
         cumulative += (vertices[i] - vertices[0]).cross(vertices[i+1] - vertices[0]);
     }
     return std::abs(cumulative / 2);
+}
+
+Shape* Polygon::rotateAround(const Point& p, const Angle& rotation) const {
+    std::vector<Point> rotated;
+    rotated.reserve(vertices.size());
+    std::transform(vertices.begin(), vertices.end(), std::back_inserter(rotated), [&p, &rotation](const Point& vertex) { return Point((vertex - p).rotate(rotation)); });
+    return new Polygon(rotated);
 }

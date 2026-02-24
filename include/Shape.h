@@ -13,4 +13,6 @@ public:
 
     /// @return The area of the Shape.
     virtual double area() const = 0;
+
+    virtual Shape* rotateAround(const Point& p, const Angle& rotation) const = 0;
 };

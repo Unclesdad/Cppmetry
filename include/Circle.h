@@ -17,4 +17,6 @@ public:
     bool intersectsPerimeter(const Line& line) const override;
 
     double area() const override;
+
+    Shape* rotateAround(const Point& p, const Angle& rotation) const override;
 };

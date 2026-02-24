@@ -16,6 +16,10 @@ public:
     /// @param pts The vertices of the polygon, ordered.
     Polygon(std::initializer_list<Point> pts);
 
+    /// @brief Constructs a Polygon.
+    /// @param pts The vertices of the polygon, ordered.
+    Polygon(std::vector<Point> pts);
+
     bool intersectsPerimeter(const Line& line) const override;
 
     /// @brief Checks whether or not this Polygon is convex.
@@ -25,4 +29,6 @@ public:
     bool isConvex() const;
 
     double area() const override;
+
+    Shape* rotateAround(const Point& p, const Angle& rotation) const override;
 };
