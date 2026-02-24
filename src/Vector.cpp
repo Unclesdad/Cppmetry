@@ -53,3 +53,7 @@ Vector Vector::unit() const {
     // make sure not to divide by 0
     return magnitude() == 0 ? Vector() : this->operator*(1/magnitude());
 }
+
+Vector Vector::rotate(const Angle& r) const {
+    return Vector((x * r.cosine()) - (y * r.sine()), (x * r.sine()) + (y * r.cosine()));
+}

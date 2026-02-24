@@ -118,3 +118,18 @@ TEST(VectorTests, UnitVectors) {
     ASSERT_NEAR((w.unit() - Vector(-sqrtTwoOverTwo,-sqrtTwoOverTwo)).magnitude(), 0, EPS);
     ASSERT_EQ(r.unit(), (r * 4).unit());
 }
+
+TEST(VectorTests, Rotation) {
+    double EPS = 1e-12;
+
+    Vector v{1,0};
+    Vector u{1,1};
+    Vector w{-2,-1};
+
+    ASSERT_NEAR((Vector(0,1) - v.rotate(Angle::PI / 2)).magnitude(), 0, EPS);
+    ASSERT_NEAR((Vector(-1,1) - u.rotate(Angle::PI / 2)).magnitude(), 0, EPS);
+
+    ASSERT_NEAR((w - w.rotate(Angle::PI * 2)).magnitude(), 0, EPS);
+    ASSERT_NEAR((-1 * w - w.rotate(Angle::PI)).magnitude(), 0, EPS);
+    ASSERT_NEAR((w.rotate(Angle(1)).rotate(Angle(1)) - w.rotate(Angle(2))).magnitude(), 0, EPS);
+}

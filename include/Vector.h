@@ -70,4 +70,9 @@ public:
 
     /// @return The unit of this vector. This vector but with a magnitude of 1.
     Vector unit() const;
+
+    /// @brief Uses a rotation matrix to rotate a vector about the origin.
+    /// @param r The amount to rotate the vector by.
+    /// @return The rotated vector.
+    Vector rotate(const Angle& r) const;
 };
