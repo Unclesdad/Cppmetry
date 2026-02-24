@@ -5,11 +5,18 @@ Circle::Circle(const Point& center, double radius) : center(center), radius(radi
 
 bool Circle::intersectsPerimeter(const Line& line) const {
     // check if one endpoint is on inside and one is on outside
-    if (((line.p1 - center).magnitude() > radius) != ((line.p2 - center).magnitude() > radius)) return true;
+    Vector endpointDisplacement(line.p1 - center);
+    Vector lineVector(line.toVector());
+
+    if (((endpointDisplacement).magnitude() > radius) != ((line.p2 - center).magnitude() > radius)) return true;
+    if ((endpointDisplacement).magnitude() < radius) return false; // both are same side; if one is inside circle then both are
     
-    // check if line is a secant and intersects circle edge. nearest dist to line should be less than or eq to radius
-    Vector endpointDisplacement = line.p2 - center;
-    return (endpointDisplacement - endpointDisplacement.projectOnto(line.toVector())).magnitude() <= radius;
+    // Both endpoints are outside circle
+    // calculate parameter t on line where closest to center of circle
+    double t(lineVector.dot(center - line.p1) / lineVector.dot(lineVector));
+
+    // check if closest point is on line, then check if closest point is within circle
+    return t >= 0 && t <= 1 && ((line.p1 + (t * lineVector)) - center).magnitude() <= radius;
 }
 
 double Circle::area() const {
