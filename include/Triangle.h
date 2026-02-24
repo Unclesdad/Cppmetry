@@ -12,6 +12,4 @@ public:
     Triangle(Point pt1, Point pt2, Point pt3);
 
     bool isConvex() const;
-
-    bool intersectsPerimeter(const Line& line) const override;
 };
