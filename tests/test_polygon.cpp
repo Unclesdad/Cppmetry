@@ -50,6 +50,37 @@ TEST(PolygonTests, IsConvex) {
     ASSERT_FALSE(n.isConvex());
 }
 
+TEST(PolygonTests, Area) {
+    Point o(0,0);
+    Point a(2,0);
+    Point b(3,5);
+    Point c(1,1);
+    Point d(2,1);
+    Point e(0,2);
+    Point f(2,2);
+
+    Polygon square{o,a,f,e};
+    ASSERT_EQ(square.area(), 4);
+
+    Polygon pointy{o,a,b,c,d,e};
+    ASSERT_EQ(pointy.area(), 5.5);
+
+    Polygon invertedPointy{o,e,d,c,b,a};
+    ASSERT_EQ(invertedPointy.area(), 5.5);
+
+    // translation
+    Vector v(5,5);
+
+    Polygon translatedPointy{o+v, a+v, b+v, c+v, d+v, e+v};
+    ASSERT_EQ(translatedPointy.area(), 5.5);
+
+    Polygon basicallyALine{o,c,f};
+    ASSERT_EQ(basicallyALine.area(), 0);
+
+    Polygon multipleSamePoint{o,o,a,f,f,e};
+    ASSERT_EQ(multipleSamePoint.area(), 4);
+}
+
 TEST(PolygonTests, Rotation) {
     double EPS = 1e-12;
     Polygon square{Point(1,1), Point(1,2), Point(2,2), Point(2,1)};
@@ -74,4 +105,5 @@ TEST(PolygonTests, Rotation) {
     Polygon* somethingRotated(something.rotateAround(Point(),Angle(5)));
     // rotation should not change area
     ASSERT_NEAR(something.area(), somethingRotated->area(), EPS);
+    delete somethingRotated;
 }
