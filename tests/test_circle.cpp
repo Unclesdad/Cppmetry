@@ -30,19 +30,19 @@ TEST(CircleTests, PerimeterIntersection) {
     ASSERT_FALSE(circle.intersectsPerimeter(Line(e,b)));
 }
 
-TEST(CircleTests, RotationTest) {
+TEST(CircleTests, Rotation) {
     double EPS = 1e-12;
 
     Circle displaced(Point(1,1), 1);
     Circle up(Point(0,1), 1);
 
-    Circle* rotateAroundCenter = displaced.rotateAround(displaced.center, Angle(1));
+    Circle* rotateAroundCenter(displaced.rotateAround(displaced.center, Angle(1)));
 
     ASSERT_NEAR(displaced.center.x, rotateAroundCenter->center.x, EPS);
     ASSERT_NEAR(displaced.center.y, rotateAroundCenter->center.y, EPS);
     delete rotateAroundCenter;
 
-    Circle* rotated = up.rotateAround(Point(), Angle(Angle::PI));
+    Circle* rotated(up.rotateAround(Point(), Angle(Angle::PI)));
     ASSERT_NEAR(rotated->center.x, 0, EPS);
     ASSERT_NEAR(rotated->center.y, -1, EPS);
     delete rotated;

@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "Polygon.h"
+#include "Angle.h"
 
 TEST(PolygonTests, PerimeterIntersection) {
     Point a{1,1};
@@ -47,4 +48,30 @@ TEST(PolygonTests, IsConvex) {
     ASSERT_FALSE(l.isConvex());
     ASSERT_FALSE(m.isConvex());
     ASSERT_FALSE(n.isConvex());
+}
+
+TEST(PolygonTests, Rotation) {
+    double EPS = 1e-12;
+    Polygon square{Point(1,1), Point(1,2), Point(2,2), Point(2,1)};
+
+    Polygon* theSame(square.rotateAround(Point(1.5,1.5), Angle(Angle::PI / 2)));
+    for (size_t i = 0; i < 4; i++) {
+        // index is off by 1 but the shape remains the same
+        ASSERT_NEAR(square.vertices[i].x, theSame->vertices[(i+1) % 4].x, EPS);
+        ASSERT_NEAR(square.vertices[i].y, theSame->vertices[(i+1) % 4].y, EPS);
+    }
+    delete theSame;
+
+    Polygon* aboutOrigin(square.rotateAround(Point(), Angle(Angle::PI)));
+    for (size_t i = 0; i < 4; i++) {
+        ASSERT_NEAR(square.vertices[i].x, -aboutOrigin->vertices[i].x, EPS);
+        ASSERT_NEAR(square.vertices[i].y, -aboutOrigin->vertices[i].y, EPS);
+    }
+    delete aboutOrigin;
+
+    // crazy shape
+    Polygon something{Point(20,2), Point(-2,4), Point(4,-7), Point(3, 3), Point(2, -10), Point(2,4)};
+    Polygon* somethingRotated(something.rotateAround(Point(),Angle(5)));
+    // rotation should not change area
+    ASSERT_NEAR(something.area(), somethingRotated->area(), EPS);
 }
