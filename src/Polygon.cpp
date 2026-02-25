@@ -54,7 +54,7 @@ double Polygon::area() const {
     return std::abs(cumulative / 2);
 }
 
-Shape* Polygon::rotateAround(const Point& p, const Angle& rotation) const {
+Polygon* Polygon::rotateAround(const Point& p, const Angle& rotation) const {
     std::vector<Point> rotated;
     rotated.reserve(vertices.size());
     std::transform(vertices.begin(), vertices.end(), std::back_inserter(rotated), [&p, &rotation](const Point& vertex) { return p + (vertex - p).rotate(rotation); });

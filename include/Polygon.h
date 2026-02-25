@@ -30,5 +30,5 @@ public:
 
     double area() const override;
 
-    Shape* rotateAround(const Point& p, const Angle& rotation) const override;
+    Polygon* rotateAround(const Point& p, const Angle& rotation) const override;
 };

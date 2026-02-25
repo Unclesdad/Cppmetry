@@ -24,6 +24,6 @@ double Circle::area() const {
     return Angle::PI * radius * radius;
 }
 
-Shape* Circle::rotateAround(const Point& p, const Angle& rotation) const {
+Circle* Circle::rotateAround(const Point& p, const Angle& rotation) const {
     return new Circle(p + (center - p).rotate(rotation), radius);
 }
