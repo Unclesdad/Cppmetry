@@ -27,3 +27,7 @@ double Circle::area() const {
 Circle* Circle::rotateAround(const Point& p, const Angle& rotation) const {
     return new Circle(p + (center - p).rotate(rotation), radius);
 }
+
+bool Circle::pointInside(const Point& p) const {
+    return (p - center).magnitude() <= radius;
+}

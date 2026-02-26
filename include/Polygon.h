@@ -31,4 +31,6 @@ public:
     double area() const override;
 
     Polygon* rotateAround(const Point& p, const Angle& rotation) const override;
+
+    bool pointInside(const Point& line) const override;
 };

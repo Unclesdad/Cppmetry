@@ -2,6 +2,7 @@
 #include <functional>
 #include <cmath>
 #include "Angle.h"
+#include <algorithm>
 
 std::vector<Line> linesFromPoints(std::vector<Point> pts) {
     std::vector<Line> lineList;
@@ -59,4 +60,14 @@ Polygon* Polygon::rotateAround(const Point& p, const Angle& rotation) const {
     rotated.reserve(vertices.size());
     std::transform(vertices.begin(), vertices.end(), std::back_inserter(rotated), [&p, &rotation](const Point& vertex) { return p + (vertex - p).rotate(rotation); });
     return new Polygon(rotated);
+}
+
+bool Polygon::pointInside(const Point& p) const {
+    // find max point height
+    double maxHeight = std::max_element(vertices.begin(), vertices.end(), [](const Point& p1, const Point& p2) { return p1.y < p2.y; })->y;
+
+    Line ray(p, Point(p.x, maxHeight + 1)); // "ray" (line) ending slightly above the maximum height
+
+    // count ray-side intersections. return true if odd
+    return std::count_if(lines.begin(), lines.end(), [&ray](const Line& line) { return ray.intersects(line);}) % 2 == 1;
 }

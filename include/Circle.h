@@ -19,4 +19,6 @@ public:
     double area() const override;
 
     Circle* rotateAround(const Point& p, const Angle& rotation) const override;
+
+    bool pointInside(const Point& p) const override;
 };
