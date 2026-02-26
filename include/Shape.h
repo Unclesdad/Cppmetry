@@ -29,6 +29,6 @@ public:
     
     /// @brief Finds whether or not a line is fully contained within the area of this Shape.
     /// @param line The line to check.
-    /// @return True if the line is inside, false if not.
+    /// @return The containment status of the line inside the Shape.
     Containment lineInside(const Line& line) const;
 };
