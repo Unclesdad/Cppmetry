@@ -47,3 +47,31 @@ TEST(CircleTests, Rotation) {
     ASSERT_NEAR(rotated->center.y, -1, EPS);
     delete rotated;
 }
+
+TEST(CircleTests, Area) {
+    // really it's just a formula
+    Circle c(Point(20,2), 5);
+
+    ASSERT_NEAR(c.area(), 78.5398163397, 1e-9);
+
+    Circle translated(Point(2,-100), 5);
+
+    ASSERT_NEAR(c.area(), 78.5398163397, 1e-9);
+}
+
+TEST(CircleTests, PointInside) {
+    Circle c(Point(), 1);
+    ASSERT_TRUE(c.pointInside(Point(0,0)));
+    ASSERT_TRUE(c.pointInside(Point(0.8 - 1e-9, 0.6 - 1e-9)));
+    ASSERT_FALSE(c.pointInside(Point(0.8 + 1e-9,0.6 + 1e-9)));
+    ASSERT_FALSE(c.pointInside(Point(10,10)));
+
+    Circle d(Point(4,3), 5);
+    ASSERT_TRUE(d.pointInside(Point(7 - 1e-9, 7 - 1e-9)));
+    ASSERT_TRUE(d.pointInside(Point(1,1)));
+    ASSERT_TRUE(d.pointInside(Point(-0.5, 3)));
+    ASSERT_FALSE(d.pointInside(Point(-1,0)));
+    ASSERT_FALSE(d.pointInside(Point(7 + 1e-9, 7 + 1e-9)));
+    ASSERT_FALSE(d.pointInside(Point(0,7)));
+    ASSERT_FALSE(d.pointInside(Point(-5,-5)));
+}
