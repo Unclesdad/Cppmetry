@@ -51,4 +51,8 @@ TEST(ShapeTests, PolygonLineContainment) {
     Point m{1,-0.5};
     Point n{1, 1.5};
     ASSERT_EQ(poly.lineInside(Line(m,n)), Shape::PARTIAL);
+
+    Point p{3,-1};
+    Point q{1,-1};
+    ASSERT_EQ(poly.lineInside(Line(p,q)), Shape::SEPARATE);
 }
