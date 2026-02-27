@@ -20,6 +20,9 @@ TEST(PolygonTests, PerimeterIntersection) {
     ASSERT_TRUE(p.intersectsPerimeter(m));
     ASSERT_FALSE(p.intersectsPerimeter(n));
     ASSERT_FALSE(p.intersectsPerimeter(o));
+
+    Polygon p2{a,b,c,Point(1.25,1.5),d};
+    ASSERT_FALSE(p2.intersectsPerimeter(Line(Point(1.5,1.5),Point(2.5,1.5))));
 }
 
 TEST(PolygonTests, IsConvex) {
@@ -106,4 +109,22 @@ TEST(PolygonTests, Rotation) {
     // rotation should not change area
     ASSERT_NEAR(something.area(), somethingRotated->area(), EPS);
     delete somethingRotated;
+}
+
+TEST(PolygonTests, PointInside) {
+    Point o{0,0};
+    Point a{4,0};
+    Point b{0.5,0.5};
+    Point c{4,1};
+    Point d{0,1};
+
+    Polygon poly{o,a,b,c,d};
+
+    ASSERT_TRUE(poly.pointInside(Point(0.25,0.25)));
+    ASSERT_TRUE(poly.pointInside(Point(3.5, 0.01)));
+    ASSERT_TRUE(poly.pointInside(Point(3.5, 0.99)));
+
+    ASSERT_FALSE(poly.pointInside(Point(1,0.5)));
+    ASSERT_FALSE(poly.pointInside(Point(2,2)));
+    ASSERT_FALSE(poly.pointInside(Point(2,-1)));
 }
